@@ -9,13 +9,7 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  Text,
-  View,
-  useColorScheme,
-} from 'react-native';
+import {SafeAreaView, StatusBar, Text, View} from 'react-native';
 
 const App = () => {
   const backgroundStyle = {
