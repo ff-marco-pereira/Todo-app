@@ -9,16 +9,15 @@
  */
 
 import React, {useState} from 'react';
-import {
-  NativeSyntheticEvent,
-  SafeAreaView,
-  StatusBar,
-  Text,
-  TextInputChangeEventData,
-  View,
-} from 'react-native';
+import {SafeAreaView, StatusBar, View} from 'react-native';
+import Button from './components/button/button.component';
 import Input from './components/Input/input.component';
 import Title from './components/title/title.component';
+import {
+  TodoItem,
+  TodoItemProps,
+} from './components/todo-item/todo-item.component';
+import TodoList from './components/todo-list/todo-list.component';
 
 const App = () => {
   const backgroundStyle = {
@@ -27,9 +26,19 @@ const App = () => {
   };
 
   const [todo, setTodo] = useState('');
+  const [todos, setTodos] = useState<string[]>([]);
 
-  const handleChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
-    setTodo(e.nativeEvent.text);
+  const handleChange = (text: string) => {
+    setTodo(text);
+  };
+
+  const Addtodo = () => {
+    if (!todo) {
+      return;
+    }
+
+    setTodos([...todos, todo]);
+    setTodo('');
   };
 
   return (
@@ -40,7 +49,9 @@ const App = () => {
       />
       <View style={{padding: 24}}>
         <Title />
-        <Input onChange={handleChange} value={todo} />
+        <Input onChangeText={handleChange} value={todo} />
+        <Button text="Add Todo" onPress={Addtodo} />
+        <TodoList data={todos} />
       </View>
     </SafeAreaView>
   );

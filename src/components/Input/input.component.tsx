@@ -4,10 +4,14 @@ import styles from './input.styles';
 
 interface Props extends TextInputProps {}
 
-const Input: FC<Props> = ({onChange}) => {
+const Input: FC<Props> = ({onChangeText, value}) => {
   return (
     <View style={styles.container}>
-      <TextInput onChange={onChange} style={styles.input} />
+      <TextInput
+        onChangeText={onChangeText}
+        style={styles.input}
+        value={value}
+      />
     </View>
   );
 };
