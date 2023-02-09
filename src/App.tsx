@@ -8,13 +8,28 @@
  * @format
  */
 
-import React from 'react';
-import {SafeAreaView, StatusBar, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  NativeSyntheticEvent,
+  SafeAreaView,
+  StatusBar,
+  Text,
+  TextInputChangeEventData,
+  View,
+} from 'react-native';
+import Input from './components/Input/input.component';
+import Title from './components/title/title.component';
 
 const App = () => {
   const backgroundStyle = {
     backgroundColor: '#333',
     flex: 1,
+  };
+
+  const [todo, setTodo] = useState('');
+
+  const handleChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
+    setTodo(e.nativeEvent.text);
   };
 
   return (
@@ -23,14 +38,9 @@ const App = () => {
         barStyle="light-content"
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#333',
-        }}>
-        <Text style={{fontSize: 48, color: '#777'}}>Todo App</Text>
+      <View style={{padding: 24}}>
+        <Title />
+        <Input onChange={handleChange} value={todo} />
       </View>
     </SafeAreaView>
   );
