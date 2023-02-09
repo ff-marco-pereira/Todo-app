@@ -18,17 +18,15 @@ import {
 } from 'react-native';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? '#ccc' : '#fff',
+    backgroundColor: '#333',
     flex: 1,
   };
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        barStyle="light-content"
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <View
@@ -36,8 +34,9 @@ const App = () => {
           flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
+          backgroundColor: '#333',
         }}>
-        <Text style={{fontSize: 48}}>Todo App</Text>
+        <Text style={{fontSize: 48, color: '#777'}}>Todo App</Text>
       </View>
     </SafeAreaView>
   );
